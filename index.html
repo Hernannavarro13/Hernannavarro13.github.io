@@ -34,6 +34,14 @@
             margin-bottom: 1rem;
             font-weight: 600;
         }
+
+        .highlight-primary {
+            color: var(--primary);
+        }
+
+        .highlight-primary {
+            color: var(--primary);
+        }
         
         p {
             margin-bottom: 1rem;
@@ -72,6 +80,27 @@
             color: white;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-transparent {
+            background-color: transparent;
+            color: var(--text);
+            border: 1px solid #ddd;
+        }
+
+        .btn-transparent-outline {
+            background-color: transparent;
+            color: var(--text);
+            border: 1px solid #ddd;
+        }
+
+        .btn-outline {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            color: var(--text);
+            border: 1px solid #ddd;
+            text-align: center;
         }
         
         .section {
@@ -417,6 +446,10 @@
                 grid-template-columns: 1fr;
             }
         }
+        .btn-small {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
     </style>
 </head>
 <body>
@@ -443,14 +476,14 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+                <h1 class="hero-title">Hi, I'm <span class="highlight-primary">Hernan Navarro</span></h1>
         <div class="container">
-            <div class="hero-content">
+                    <a href="#contact" class="btn btn-transparent-outline">Contact Me</a>
                 <img src="https://via.placeholder.com/150" alt="Your Name" class="hero-img">
-                <h1 class="hero-title">Hi, I'm <span style="color: var(--primary);">Hernan Navarro</span></h1>
+                <h1 class="hero-title">Hi, I'm <span class="highlight-primary">Hernan Navarro</span></h1>
                 <p class="hero-subtitle">Front End Developer and Future Software Engineer</p>
                 <div class="hero-cta">
-                    <a href="#projects" class="btn">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
                     <a href="#contact" class="btn" style="background-color: transparent; color: var(--text); border: 1px solid #ddd;">Contact Me</a>
                 </div>
             </div>
@@ -495,14 +528,14 @@
                     <img src="https://via.placeholder.com/600x400" alt="Project 1" class="project-img">
                     <div class="project-content">
                         <div class="project-tags">
-                            <span class="project-tag">HTML</span>
+                            <a href="#" class="btn btn-outline">View Code</a>
                             <span class="project-tag">CSS</span>
                             <span class="project-tag">JavaScript</span>
-                        </div>
+                            <a href="#" class="btn btn-small">Live Demo</a>
                         <h3>E-commerce Website</h3>
                         <p>A responsive e-commerce website with product listings, shopping cart functionality, and user authentication.</p>
                         <div class="project-links">
-                            <a href="#" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Live Demo</a>
+                            <a href="#" class="btn btn-small">Live Demo</a>
                             <a href="#" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background-color: transparent; color: var(--text); border: 1px solid #ddd;">View Code</a>
                         </div>
                     </div>
@@ -511,11 +544,12 @@
                 <!-- Project 2 -->
                 <div class="project-card">
                     <img src="Images/TaskManagerApp.png" alt="Task Manager App" class="project-img">
+
                     <div class="project-content">
                         <div class="project-tags">
-                            <span class="project-tag">React</span>
-                            <span class="project-tag">Node.js</span>
-                            <span class="project-tag">MongoDB</span>
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
                         </div>
                         <h3>Task Manager App</h3>
                         <p>A full-stack task management application with user accounts, task creation, and progress tracking.</p>
@@ -640,6 +674,7 @@
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                     </svg>
                 </a>
+
                 <a href="#" class="social-link" title="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
