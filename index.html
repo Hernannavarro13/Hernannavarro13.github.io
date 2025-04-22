@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Hernan Navarro-Portfolio</title>
     <style>
         /* === Base Styles === */
         :root {
             --primary: #4361ee;
-            --secondary: #3f37c9;
+            --secondary: #a437c9;
             --dark: #1d1b31;
-            --light: #f9f7f7;
+            --light: #f2f3fbd9;
             --accent: #f72585;
             --text: #333333;
             --text-light: #777777;
@@ -31,7 +31,7 @@
         }
         
         h1, h2, h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             font-weight: 600;
         }
 
@@ -60,7 +60,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 1 3rem;
         }
         
         .btn {
@@ -191,12 +191,14 @@
         .hero-title {
             font-size: 3rem;
             margin-bottom: 1rem;
+            text-align: center;
         }
         
         .hero-subtitle {
             font-size: 1.5rem;
             color: var(--text-light);
             margin-bottom: 2rem;
+            text-align: center;
         }
         
         .hero-cta {
@@ -252,14 +254,14 @@
         /* === Projects Section === */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            align-items: center;
         }
         
         .project-card {
             background-color: white;
             border-radius: 10px;
-            overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
         }
@@ -271,12 +273,14 @@
         
         .project-img {
             width: 100%;
-            height: 300px;
+            height: 350px;
             object-fit: cover;
+            padding: 1.5rem;
+            flex-wrap: wrap;
         }
         
         .project-content {
-            padding: 1.5rem;
+            padding: 2.5rem;
         }
         
         .project-tags {
@@ -459,7 +463,7 @@
             <nav>
                 <a href="#" class="logo">Hernan<span>Navarro</span></a>
                 <ul class="nav-links">
-                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#top" >Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -476,6 +480,7 @@
     </header>
 
     <!-- Hero Section -->
+    <section id="home" class="hero">
         <div class="container">
                 <img src="https://via.placeholder.com/150" alt="Your Name" class="hero-img">
                 <h2 class="hero-title">Hi, I'm <span class="highlight-primary">Hernan Navarro</span></h2>
@@ -518,21 +523,22 @@
     <!-- Projects Section -->
     <section id="projects" class="projects section">
         <div class="container">
-            <h2 class="section-title">My Projects</h2>
+            <h1 class="section-title">My Projects</h1>
             <div class="projects-grid">
                 <!-- Project 1 -->
                 <div class="project-card">
-                    <img src="https://via.placeholder.com/600x400" alt="Project 1" class="project-img">
+                    <img src="Images/EcomWebsite.png" alt="Funko Website" class="project-img">
                     <div class="project-content">
                         <div class="project-tags">
+                            <span class="project-tag">HTML</span>
                             <span class="project-tag">CSS</span>
                             <span class="project-tag">JavaScript</span>
-                        <h3>E-commerce Website</h3>
+                        </div>
+                        <h3>Funko E-Commerce Website</h3>
                         <p>A responsive e-commerce website with product listings, shopping cart functionality, and user authentication.</p>
                         <div class="project-links">
-                            <a href="#" class="btn btn-outline">View Code</a>
-                            <a href="#" class="btn btn-small">Live Demo</a>
-                            <a href="#" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background-color: transparent; color: var(--text); border: 1px solid #ddd;">View Code</a>
+                            <a href="https://raw.githack.com/Hernannavarro13/FunkoPopWebsite/main/index.html" class="btn btn-small">Live Demo</a>
+                            <a href="https://github.com/Hernannavarro13/FunkoPopWebsite" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background-color: transparent; color: var(--text); border: 1px solid #ddd;">View Code</a>
                         </div>
                     </div>
                 </div>
@@ -550,8 +556,8 @@
                         <h3>Task Manager App</h3>
                         <p>A full-stack task management application with user accounts, task creation, and progress tracking.</p>
                         <div class="project-links">
-                            <a href="#" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Live Demo</a>
-                            <a href="#" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background-color: transparent; color: var(--text); border: 1px solid #ddd;">View Code</a>
+                            <a href="https://raw.githack.com/Hernannavarro13/TaskManagerApp/main/index.html" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Live Demo</a>
+                            <a href="https://github.com/Hernannavarro13/TaskManagerApp" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background-color: transparent; color: var(--text); border: 1px solid #ddd;">View Code</a>
                         </div>
                     </div>
                 </div>
@@ -568,8 +574,8 @@
                         <h3>Weather Dashboard</h3>
                         <p>A weather application that displays current weather conditions and forecasts for locations worldwide.</p>
                         <div class="project-links">
-                            <a href="#" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Live Demo</a>
-                            <a href="#" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background-color: transparent; color: var(--text); border: 1px solid #ddd;">View Code</a>
+                            <a href="https://your-live-demo-link.com" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Live Demo</a>
+                            <a href="https://your-code-repository-link.com" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background-color: transparent; color: var(--text); border: 1px solid #ddd;">View Code</a>
                         </div>
                     </div>
                 </div>
