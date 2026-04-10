@@ -1,507 +1,758 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hernan Navarro-Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hernan Navarro | Portfolio</title>
     <style>
-        /* === Base Styles === */
         :root {
-            --primary: #4361ee;
-            --secondary: #a437c9;
-            --dark: #1d1b31;
-            --light: #f2f3fbd9;
-            --accent: #f72585;
-            --text: #333333;
-            --text-light: #777777;
-            --transition: all 0.3s ease;
+            --bg: #0b1020;
+            --bg-soft: #121933;
+            --card: rgba(18, 25, 51, 0.7);
+            --card-strong: rgba(23, 31, 63, 0.92);
+            --text: #eef2ff;
+            --text-soft: #b7c0e0;
+            --primary: #6ea8fe;
+            --secondary: #8b5cf6;
+            --accent: #ff4fa3;
+            --mint: #39d0c7;
+            --border: rgba(255,255,255,0.12);
+            --shadow: 0 25px 60px rgba(3, 8, 25, 0.35);
+            --transition: 220ms ease;
+            --radius: 22px;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
+            font-family: Inter, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             color: var(--text);
-            background-color: var(--light);
+            background:
+                radial-gradient(circle at 15% 20%, rgba(110,168,254,0.22), transparent 25%),
+                radial-gradient(circle at 85% 18%, rgba(255,79,163,0.18), transparent 24%),
+                radial-gradient(circle at 60% 80%, rgba(57,208,199,0.14), transparent 22%),
+                linear-gradient(180deg, #080c19 0%, #0b1020 45%, #0f1730 100%);
             line-height: 1.6;
-        }
-        
-        h1, h2, h3 {
-            margin-bottom: 2rem;
-            font-weight: 600;
+            overflow-x: hidden;
         }
 
-        .highlight-primary {
-            color: var(--primary);
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, rgba(255,255,255,.55), transparent 85%);
+            pointer-events: none;
+            z-index: -1;
         }
 
-        .highlight-primary {
-            color: var(--primary);
-        }
-        
-        p {
-            margin-bottom: 1rem;
-        }
-        
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        a:hover {
-            color: var(--accent);
-        }
-        
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
         .container {
-            max-width: 1200px;
+            width: min(1150px, calc(100% - 2rem));
             margin: 0 auto;
-            padding: 1 3rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: var(--secondary);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-transparent {
-            background-color: transparent;
-            color: var(--text);
-            border: 1px solid #ddd;
-        }
-
-        .btn-transparent-outline {
-            background-color: transparent;
-            color: var(--text);
-            border: 1px solid #ddd;
-        }
-
-        .btn-outline {
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-            background-color: transparent;
-            color: var(--text);
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-        
         .section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
+            padding: 6rem 0;
             position: relative;
         }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent);
-        }
-        
-        /* === Header & Navigation === */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark);
-        }
-        
-        .logo span {
-            color: var(--primary);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 2rem;
-        }
-        
-        .nav-links a {
-            font-weight: 500;
-            color: var(--text);
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary);
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-        
-        /* === Hero Section === */
-        .hero {
-            padding: 10rem 0 5rem;
-            background-color: var(--light);
-            text-align: center;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero-title {
-            font-size: 3rem;
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 1rem;
             text-align: center;
         }
-        
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
+
+        .section-kicker {
+            text-transform: uppercase;
+            letter-spacing: .22em;
+            color: var(--mint);
+            text-align: center;
+            font-size: .78rem;
+            margin-bottom: .9rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            color: var(--text-soft);
+            max-width: 760px;
+            margin: 0 auto 3rem;
             text-align: center;
         }
-        
-        .hero-cta {
-            display: flex;
+
+        .glass {
+            background: var(--card);
+            border: 1px solid var(--border);
+            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(18px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
+            gap: .55rem;
+            padding: .95rem 1.35rem;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), color var(--transition);
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn:hover { transform: translateY(-2px); }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 16px 30px rgba(93, 99, 255, 0.28);
+        }
+        .btn-primary:hover { box-shadow: 0 20px 34px rgba(93,99,255,.34); }
+        .btn-secondary {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.14);
+            color: var(--text);
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(255,255,255,0.22);
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8, 12, 25, 0.65);
+            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 78px;
             gap: 1rem;
         }
-        
-        .hero-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 2rem;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: .02em;
         }
-        
-        /* === About Section === */
-        .about {
-            background-color: white;
+        .logo span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
             align-items: center;
         }
-        
-        .about-img img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+        .nav-links a {
+            color: var(--text-soft);
+            font-weight: 600;
+            padding: .55rem .85rem;
+            border-radius: 999px;
+            transition: var(--transition);
         }
-        
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: white;
+            background: rgba(255,255,255,0.07);
+        }
+
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hero {
+            padding: 7rem 0 4rem;
+        }
+
+        .hero-shell {
+            position: relative;
+            overflow: hidden;
+            border-radius: 32px;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            min-height: 560px;
+        }
+
+        .hero-shell::before,
+        .hero-shell::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(30px);
+            opacity: .8;
+            pointer-events: none;
+        }
+
+        .hero-shell::before {
+            width: 240px; height: 240px;
+            background: rgba(110,168,254,0.22);
+            top: -40px; right: -40px;
+        }
+        .hero-shell::after {
+            width: 280px; height: 280px;
+            background: rgba(255,79,163,0.18);
+            bottom: -90px; left: -60px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .8rem;
+            text-transform: uppercase;
+            letter-spacing: .24em;
+            color: var(--mint);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--mint), transparent);
+        }
+
+        .hero-title {
+            font-size: clamp(2.9rem, 7vw, 5.5rem);
+            line-height: .95;
+            margin-bottom: 1.25rem;
+            letter-spacing: -.03em;
+        }
+
+        .hero-title .gradient {
+            background: linear-gradient(135deg, #fff, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.12rem;
+            color: var(--text-soft);
+            max-width: 640px;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .9rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: .9rem;
+        }
+
+        .stat {
+            padding: 1rem 1rem;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .stat strong {
+            display: block;
+            font-size: 1.15rem;
+            margin-bottom: .15rem;
+        }
+        .stat span {
+            color: var(--text-soft);
+            font-size: .92rem;
+        }
+
+        .hero-visual {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .portrait-card {
+            padding: 1rem;
+            border-radius: 28px;
+        }
+
+        .hero-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .floating-panel {
+            display: grid;
+            gap: .8rem;
+            padding: 1rem 1.1rem;
+            border-radius: 22px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+
+        .chip {
+            padding: .55rem .85rem;
+            border-radius: 999px;
+            font-size: .82rem;
+            font-weight: 700;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-soft);
+        }
+
+        .about-grid,
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .about-card,
+        .about-visual,
+        .contact-card,
+        .contact-form-wrap,
+        .project-card,
+        .showcase-card {
+            border-radius: 26px;
+            padding: 1.5rem;
+        }
+
+        .about-card h3,
+        .contact-card h3,
+        .contact-form-wrap h3 {
+            font-size: 1.55rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-card p,
+        .contact-card p,
+        .contact-form-wrap p {
+            color: var(--text-soft);
+        }
+
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: .75rem;
+            margin-top: 1.4rem;
         }
-        
+
         .skill-tag {
-            background-color: var(--light);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            padding: .65rem .95rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #dce4ff;
+            font-weight: 600;
+            font-size: .92rem;
         }
-        
-        /* === Projects Section === */
+
+        .about-visual {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-visual img {
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            align-items: center;
+            gap: 1.25rem;
         }
-        
+
         .project-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
         }
-        
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent 40%, rgba(255,255,255,0.02));
+            pointer-events: none;
+        }
+
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            border-color: rgba(255,255,255,0.18);
+            box-shadow: 0 28px 60px rgba(3, 8, 25, 0.42);
         }
-        
+
+        .project-img-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.04);
+        }
+
         .project-img {
             width: 100%;
-            height: 350px;
+            height: 250px;
             object-fit: cover;
-            padding: 1.5rem;
-            flex-wrap: wrap;
+            transition: transform .5s ease;
         }
-        
-        .project-content {
-            padding: 2.5rem;
+
+        .project-card:hover .project-img { transform: scale(1.05); }
+
+        .project-badge {
+            position: absolute;
+            top: .9rem;
+            left: .9rem;
+            padding: .45rem .7rem;
+            font-size: .75rem;
+            border-radius: 999px;
+            background: rgba(11,16,32,0.72);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: white;
+            font-weight: 700;
+            backdrop-filter: blur(12px);
         }
-        
+
         .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: .55rem;
         }
-        
+
         .project-tag {
-            background-color: var(--light);
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
+            padding: .4rem .7rem;
+            font-size: .78rem;
+            border-radius: 999px;
+            color: #dbe5ff;
+            background: rgba(110,168,254,0.12);
+            border: 1px solid rgba(110,168,254,0.18);
         }
-        
+
+        .project-card h3 {
+            font-size: 1.35rem;
+            margin-top: .15rem;
+        }
+
+        .project-card p {
+            color: var(--text-soft);
+        }
+
         .project-links {
             display: flex;
-            gap: 1rem;
+            flex-wrap: wrap;
+            gap: .75rem;
+            margin-top: auto;
+            padding-top: .3rem;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .showcase-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: .7rem;
+        }
+
+        .showcase-card p,
+        .showcase-card li {
+            color: var(--text-soft);
+        }
+
+        .showcase-card ul {
+            padding-left: 1.2rem;
+            margin-top: .7rem;
+            display: grid;
+            gap: .4rem;
+        }
+
+        .fake-terminal {
+            border-radius: 18px;
+            padding: 1rem;
+            background: #09101f;
+            border: 1px solid rgba(255,255,255,0.08);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: .9rem;
+            color: #b7f8d7;
+            white-space: pre-wrap;
             margin-top: 1rem;
         }
-        
-        /* === Contact Section === */
-        .contact {
-            background-color: white;
-        }
-        
-        .contact-grid {
+
+        .contact-stack {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
             gap: 1rem;
         }
-        
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1rem;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
         .contact-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-        
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
-        .form-group label {
-            font-weight: 500;
-        }
-        
-        .form-control {
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* === Footer === */
-        footer {
-            background-color: var(--dark);
+            flex: 0 0 44px;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(110,168,254,0.18), rgba(255,79,163,0.16));
+            border: 1px solid rgba(255,255,255,0.1);
             color: white;
-            padding: 3rem 0;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-group { display: grid; gap: .45rem; }
+        .form-group label { font-weight: 700; }
+
+        .form-control {
+            width: 100%;
+            padding: .95rem 1rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: rgba(110,168,254,0.65);
+            box-shadow: 0 0 0 4px rgba(110,168,254,0.12);
+        }
+
+        .form-control::placeholder { color: rgba(220,228,255,0.45); }
+        textarea.form-control { min-height: 160px; resize: vertical; }
+
+        footer {
+            padding: 2.5rem 0 3rem;
             text-align: center;
         }
-        
+
+        .footer-card {
+            border-radius: 28px;
+            padding: 2rem 1.2rem;
+        }
+
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: .9rem;
+            margin: 1.3rem 0 1rem;
         }
-        
+
         .social-link {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            place-items: center;
             color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
             transition: var(--transition);
         }
-        
+
         .social-link:hover {
-            background-color: var(--primary);
-            transform: translateY(-5px);
+            transform: translateY(-4px) scale(1.04);
+            background: linear-gradient(135deg, rgba(110,168,254,0.22), rgba(255,79,163,0.22));
         }
-        
-        /* === Responsive Design === */
-        @media screen and (max-width: 992px) {
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 960px) {
+            .hero-grid,
             .about-grid,
-            .contact-grid {
+            .contact-grid,
+            .showcase-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
             }
-            
-            .about-img {
-                order: -1;
+
+            .hero {
+                padding-top: 5.5rem;
             }
         }
-        
-        @media screen and (max-width: 768px) {
-            html {
-                font-size: 14px;
-            }
-            
+
+        @media (max-width: 768px) {
+            .hamburger { display: inline-flex; }
+
             .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background-color: white;
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                width: min(94%, 500px);
+                padding: 1rem;
+                border-radius: 22px;
+                background: rgba(11,16,32,0.96);
+                border: 1px solid rgba(255,255,255,0.08);
+                box-shadow: var(--shadow);
                 flex-direction: column;
-                align-items: center;
-                padding: 2rem 0;
-                gap: 2rem;
+                gap: .4rem;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-8px);
                 transition: var(--transition);
             }
-            
+
             .nav-links.active {
-                left: 0;
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
             }
-            
-            .nav-links li {
-                margin-left: 0;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .btn-small {
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
+
+            .nav-links a { width: 100%; text-align: center; }
+            .hero-stats { grid-template-columns: 1fr; }
+            .hero-title { font-size: clamp(2.5rem, 12vw, 4rem); }
+            .section { padding: 4.5rem 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
     <header>
         <div class="container">
             <nav>
                 <a href="#home" class="logo">Hernan<span>Navarro</span></a>
-                <ul class="nav-links">
-                    <li><a href="#home" >Home</a></li>
+                <ul class="nav-links glass" id="navLinks">
+                    <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#showcase">Showcase</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <div class="hamburger" id="hamburger">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <button class="hamburger" id="hamburger" aria-label="Open menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
-                </div>
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-                <img src="Images\linkedin profile.jpg" alt="Your Name" class="hero-img">
-                <h2 class="hero-title">Hi, I'm <span class="highlight-primary">Hernan Navarro</span></h2>
-                <p class="hero-subtitle">Front End Developer and Future Software Engineer</p>
-                <div class="hero-cta">
-                    <a href="#contact" class="btn" style="background-color: transparent; color: var(--text); border: 1px solid #ddd;">Contact Me</a>
+            <div class="hero-shell glass reveal">
+                <div class="hero-grid">
+                    <div>
+                        <span class="eyebrow">Portfolio • Developer • Builder</span>
+                        <h1 class="hero-title">Creating <span class="gradient">vibrant digital experiences</span> with code, data, and design.</h1>
+                        <p class="hero-subtitle">I’m Hernan Navarro, a developer building full-stack apps, data-driven tools, and polished user experiences that feel modern, clean, and memorable.</p>
+                        <div class="hero-actions">
+                            <a href="#projects" class="btn btn-primary">View Projects</a>
+                            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <strong>20+</strong>
+                                <span>Technical skills across web, backend, and data</span>
+                            </div>
+                            <div class="stat">
+                                <strong>3</strong>
+                                <span>Featured projects live on this portfolio</span>
+                            </div>
+                            <div class="stat">
+                                <strong>1 goal</strong>
+                                <span>Build software that looks great and solves real problems</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="portrait-card glass">
+                            <img src="Images/linkedin profile.jpg" alt="Hernan Navarro portrait" class="hero-img" />
+                        </div>
+                        <div class="floating-panel glass">
+                            <h3>Focused on</h3>
+                            <div class="chip-row">
+                                <span class="chip">Front End Development</span>
+                                <span class="chip">Full-Stack Apps</span>
+                                <span class="chip">Python Projects</span>
+                                <span class="chip">ML & Stock Tools</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about section">
+    <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <p class="section-kicker reveal">About Me</p>
+            <h2 class="section-title reveal">More than a basic portfolio</h2>
+            <p class="section-subtitle reveal">I wanted to showcase my journey as a developer and skills as a front end developer all while maintaining a clean and modern aesthetic and integrating Quantitative projects</p>
             <div class="about-grid">
-                <div class="about-content">
+                <div class="about-card glass reveal">
                     <h3>Who I Am</h3>
-                    <p>I'm a passionate web developer with a strong focus on creating clean, user-friendly websites and applications. With expertise in front-end and back-end technologies, I enjoy bringing ideas to life in the digital world.</p>
-                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open source projects, or enjoying outdoor activities.</p>
-                    <h3>My Skills</h3>
+                    <p>I'm a passionate developer focused on building clean, user-friendly websites, full-stack applications, and data-driven tools. I enjoy taking an idea from concept to polished experience.</p>
+                    <p>Beyond coding, I like learning new technologies, improving my engineering skills, and creating projects that showcase both problem-solving and presentation.</p>
+                    <h3 style="margin-top:1.4rem;">My Skills</h3>
                     <div class="skills">
                         <span class="skill-tag">HTML5</span>
                         <span class="skill-tag">CSS3</span>
@@ -515,7 +766,7 @@
                         <span class="skill-tag">Git</span>
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">Django</span>
-                        <span class="skill-tag">Rest API</span>
+                        <span class="skill-tag">REST API</span>
                         <span class="skill-tag">C</span>
                         <span class="skill-tag">C#</span>
                         <span class="skill-tag">C++</span>
@@ -525,248 +776,267 @@
                         <span class="skill-tag">Docker</span>
                     </div>
                 </div>
-                <div class="about-img">
-                    <img src="Images\about me banner portfolio.png" alt="About Me">
+                <div class="about-visual glass reveal">
+                    <img src="Images/about me banner portfolio.png" alt="About Hernan Navarro" />
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects section">
+    <section id="projects" class="section">
         <div class="container">
-            <h1 class="section-title">My Projects</h1>
+            <p class="section-kicker reveal">Selected Work</p>
+            <h2 class="section-title reveal">Projects</h2>
+            <p class="section-subtitle reveal">Showcasing some of my favorite projects.</p>
             <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <img src="Images/EcomWebsite.png" alt="Funko Website" class="project-img">
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="project-tag">HTML</span>
-                            <span class="project-tag">CSS</span>
-                            <span class="project-tag">JavaScript</span>
-                        </div>
-                        <h3>Funko E-Commerce Website</h3>
-                        <p>A responsive e-commerce website with product listings, shopping cart functionality, and user authentication.</p>
-                        <div class="project-links">
-                            <a href="https://raw.githack.com/Hernannavarro13/FunkoPopWebsite/main/index.html" class="btn btn-small">Live Demo</a>
-                            <a href="https://github.com/Hernannavarro13/FunkoPopWebsite" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background-color: transparent; color: var(--text); border: 1px solid #ddd;">View Code</a>
-                        </div>
+                <article class="project-card glass reveal">
+                    <div class="project-img-wrap">
+                        <span class="project-badge">Featured Build</span>
+                        <img src="Images/EcomWebsite.png" alt="Funko Website" class="project-img" />
                     </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <img src="Images/TaskManagerApp.png" alt="Task Manager App" class="project-img">
+                    <div class="project-tags">
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                    </div>
+                    <h3>Funko E-Commerce Website</h3>
+                    <p>A responsive shopping experience with product browsing, cart flow, and a stronger front-end presentation for e-commerce interactions.</p>
+                    <div class="project-links">
+                        <a href="https://raw.githack.com/Hernannavarro13/FunkoPopWebsite/main/index.html" class="btn btn-primary">Live Demo</a>
+                        <a href="https://github.com/Hernannavarro13/FunkoPopWebsite" class="btn btn-secondary">View Code</a>
+                    </div>
+                </article>
 
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="project-tag">HTML</span>
-                            <span class="project-tag">CSS</span>
-                            <span class="project-tag">JavaScript</span>
-                        </div>
-                        <h3>Task Manager App</h3>
-                        <p>A full-stack task management application with user accounts, task creation, and progress tracking.</p>
-                        <div class="project-links">
-                            <a href="https://task-manager-frontend-yl4u.onrender.com/" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Live Demo</a>
-                            <a href="https://github.com/Hernannavarro13/TaskManagerApp" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background-color: transparent; color: var(--text); border: 1px solid #ddd;">View Code</a>
-                        </div>
+                <article class="project-card glass reveal">
+                    <div class="project-img-wrap">
+                        <span class="project-badge">Full Stack</span>
+                        <img src="Images/TaskManagerApp.png" alt="Task Manager App" class="project-img" />
                     </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <img src="Images\coming soon psystock.png" alt="PsyStock App" class="project-img">
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="project-tag">React</span>
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">JavaScript</span>
-                            <span class="project-tag">Django</span>
-                            <span class="project-tag">PostgreSQL</span>
-                        </div>
-                        <h3>PsyStock App</h3>
-                        <p>A web application that allows users to:
-                            View stock predictions using machine learning
-                            Perform paper trading and Add stocks to a watchlist
-                        </p>
-                        <div class="project-links">
-                            <a href="https://your-live-demo-link.com" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Live Demo</a>
-                            <a href="https://github.com/Hernannavarro13/Psystock-App" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background-color: transparent; color: var(--text); border: 1px solid #ddd;">View Code</a>
-                        </div>
+                    <div class="project-tags">
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">JavaScript</span>
                     </div>
-                </div>
+                    <h3>Task Manager App</h3>
+                    <p>A task management application with user accounts, task organization, and progress tracking built to demonstrate productivity-focused app design.</p>
+                    <div class="project-links">
+                        <a href="https://task-manager-frontend-yl4u.onrender.com/" class="btn btn-primary">Live Demo</a>
+                        <a href="https://github.com/Hernannavarro13/TaskManagerApp" class="btn btn-secondary">View Code</a>
+                    </div>
+                </article>
+
+                <article class="project-card glass reveal">
+                    <div class="project-img-wrap">
+                        <span class="project-badge">Machine Learning</span>
+                        <img src="Images/coming soon psystock.png" alt="PsyStock App" class="project-img" />
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">Django</span>
+                        <span class="project-tag">PostgreSQL</span>
+                    </div>
+                    <h3>PsyStock App</h3>
+                    <p>A stock-focused web app for machine learning predictions, paper trading, and watchlist building. This is the kind of project that deserves image galleries, charts, and result previews.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Hernannavarro13/Psystock-App" class="btn btn-primary">Demo Coming Soon</a>
+                        <a href="https://github.com/Hernannavarro13/Psystock-App" class="btn btn-secondary">View Code</a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
+    
+<section id="showcase" class="section">
+    <div class="container">
+        <p class="section-kicker reveal">Project Showcase</p>
+        <h2 class="section-title reveal">Market Regime Detector</h2>
+        <p class="section-subtitle reveal">A model to detect market regimes based on market data to inform trading strategies, then turn the output into visuals that are easy to understand on a portfolio.</p>
+        <div class="showcase-grid">
+            <div class="showcase-card glass reveal">
+                <h3>Project Overview</h3>
+                <p>This project pulls market data, classifies the environment, and labels each period into a regime that can support trading analysis and strategy design. The Idea is to help during options trading to get the bias for the day and trade in that direction as a trend day and avoid chop days that burn theta.</p>
+                <ul>
+                    <li>Calm Bull Trend</li>
+                    <li>Volatile Bull</li>
+                    <li>Panic Bear</li>
+                    <li>Calm Bear Trend</li>
+                    <li>Low-Vol Chop</li>
+                    <li>High-Vol Chop</li>
+                    <li>Transition</li>
+                </ul>
+                <div class="project-links" style="margin-top:1rem;">
+                    <a href="MarketRegimeDetector.py" class="btn btn-primary">View Script</a>
+                </div>
+            </div>
+            <div class="showcase-card glass reveal">
+                <h3>Terminal And Results Preview</h3>
+                <p>The script fetches price data, computes moving averages, realized volatility, momentum, and ATR %, then maps each date into a market regime and saves chart outputs.</p>
+                <div class="fake-terminal">$ python MarketRegimeDetector.py --symbol SPY --period 2y
+
+Latest regime summary
+Trend: Bullish
+Volatility: High
+Momentum: Positive
+Market Regime: Volatile Bull
+
+Saved labeled price chart to: spy_regime_chart.png
+Saved regime timeline chart to: spy_regime_timeline.png</div>
+            </div>
+        </div>
+
+        <div class="showcase-grid" style="margin-top:1.25rem;">
+            <div class="showcase-card glass reveal">
+                <h3>Labeled Price Chart</h3>
+                <p>This chart overlays SPY price with the 50 DMA and 200 DMA, then labels regime changes directly on the chart for quick visual interpretation.</p>
+                <div class="project-img-wrap" style="margin-top:1rem;">
+                    <img src="spy_regime_chart.png" alt="SPY regime labeled chart" class="project-img" style="height:auto; max-height:460px; object-fit:contain; background:rgba(255,255,255,0.03);" />
+                </div>
+            </div>
+            <div class="showcase-card glass reveal">
+                <h3>Regime Timeline</h3>
+                <p>The timeline view makes it easier to see when the market shifts from chop to trend, or from calm to high-volatility behavior across the full sample period.</p>
+                <div class="project-img-wrap" style="margin-top:1rem;">
+                    <img src="spy_regime_timeline.png" alt="SPY regime timeline chart" class="project-img" style="height:auto; max-height:460px; object-fit:contain; background:rgba(255,255,255,0.03);" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-kicker reveal">Contact</p>
+            <h2 class="section-title reveal">Let’s build something strong</h2>
+            <p class="section-subtitle reveal">Looking for the next big idea?</p>
             <div class="contact-grid">
-                <div class="contact-info">
+                <div class="contact-card glass reveal">
                     <h3>Contact Information</h3>
-                    <p>Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                <polyline points="22,6 12,13 2,6"></polyline>
-                            </svg>
+                    <p>Feel free to reach out if you're looking for a developer, want to collaborate, or just want to connect.</p>
+                    <div class="contact-stack" style="margin-top: 1.3rem;">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:Hernnavarro@gmail.com">Hernnavarro@gmail.com</a>
+                            </div>
                         </div>
-                        <div>
-                            <h4>Email</h4>
-                            <a href="mailto:Hernaneduardo06@gmail.com">Hernaneduardo06@gmail.com</a>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Toms River, NJ, USA</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Toms River, NJ, USA</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Phone</h4>
-                            <a href="tel:+732-642-4010">+1 732-642-4010</a>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <a href="tel:+17326424010">+1 732-642-4010</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="contact-form">
+                <div class="contact-form-wrap glass reveal">
                     <h3>Send Me a Message</h3>
-                    <form id="contactForm">
+                    <p style="margin-bottom: 1rem;">Email to Reach out</p>
+                    <form id="contactForm" class="contact-form">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <input type="text" id="name" class="form-control" placeholder="Your name" required />
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
+                            <input type="email" id="email" class="form-control" placeholder="your@email.com" required />
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
+                            <input type="text" id="subject" class="form-control" placeholder="Project, opportunity, or question" required />
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                            <textarea id="message" class="form-control" placeholder="Tell me a little about what you’re looking for..." required></textarea>
                         </div>
-                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <h2>Hernan<span style="color: var(--primary);">Navarro</span></h2>
-            <p>Front End Developer and Software Engineer</p>
-            
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/hernan-navarro-05a2a1224/" class="social-link" title="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                </a>
-                <a href="https://github.com/Hernannavarro13" class="social-link" title="GitHub">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                </a>
+            <div class="footer-card glass reveal">
+                <h2 style="margin-bottom:.5rem;">Hernan <span style="background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;">Navarro</span></h2>
+                <p style="color:var(--text-soft);">Front End Developer • Future Software Engineer • Builder of polished digital experiences</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/hernan-navarro-05a2a1224/" class="social-link" title="LinkedIn" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="https://github.com/Hernannavarro13" class="social-link" title="GitHub" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                </div>
+                <p style="color:var(--text-soft);">© 2026 Hernan Navarro. All rights reserved.</p>
             </div>
-            
-            <p>&copy; 2025 Hernan Navarro. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // Mobile menu toggle
         const hamburger = document.getElementById('hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        
+        const navLinks = document.getElementById('navLinks');
+        const navAnchors = document.querySelectorAll('.nav-links a');
+
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
-                    
-                    // Update active link
-                    document.querySelectorAll('.nav-links a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                }
+
+        navAnchors.forEach(anchor => {
+            anchor.addEventListener('click', () => {
+                navLinks.classList.remove('active');
             });
         });
-        
-        // Active link update on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            
+
+        const sections = document.querySelectorAll('section[id]');
+        const setActiveLink = () => {
+            let current = 'home';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.clientHeight;
-                
-                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
-                    current = '#' + section.getAttribute('id');
+                const top = section.offsetTop - 120;
+                const height = section.offsetHeight;
+                if (window.scrollY >= top && window.scrollY < top + height) {
+                    current = section.id;
                 }
             });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === current) {
-                    link.classList.add('active');
+            navAnchors.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+            });
+        };
+
+        window.addEventListener('scroll', setActiveLink);
+        setActiveLink();
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        });
-        
-        // Form submission handling
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
         const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            // Here you would normally send the form data to a server
-            // For now, we'll just show an alert
             alert('Thank you for your message! I will get back to you soon.');
             contactForm.reset();
         });
